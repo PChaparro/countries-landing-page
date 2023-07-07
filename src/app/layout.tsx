@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${nunito.className} bg-neutral-100/50 dark:bg-gray-700`}
+        className={`${nunito.className} bg-neutral-100/50 dark:bg-dark-dark`}
       >
         <ClientLayout>
           <>

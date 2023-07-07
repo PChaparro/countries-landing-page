@@ -12,6 +12,15 @@ module.exports = {
       xs: "475px",
       ...defaultTheme.screens,
     },
+    extend: {
+      gridTemplateColumns: {
+        "auto-fit-250": "repeat(auto-fit, minmax(250px, 1fr))",
+      },
+      colors: {
+        "dark-dark": "#1F2D36",
+        "dark-soft": "#2B3743",
+      },
+    },
   },
   darkMode: "class",
   plugins: [],
