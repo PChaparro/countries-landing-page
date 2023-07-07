@@ -14,7 +14,7 @@ module.exports = {
     },
     extend: {
       gridTemplateColumns: {
-        "auto-fit-250": "repeat(auto-fit, minmax(250px, 1fr))",
+        "auto-fill-250": "repeat(auto-fill, minmax(250px, 1fr))",
       },
       colors: {
         "dark-dark": "#1F2D36",
