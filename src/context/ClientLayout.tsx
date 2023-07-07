@@ -4,7 +4,7 @@ import { ThemeProvider } from "next-themes";
 export const ClientLayout = ({
   children,
 }: {
-  children: React.ReactElement;
+  children: React.ReactNode | React.ReactNode[];
 }) => {
   return (
     <ThemeProvider attribute="class" defaultTheme="light">

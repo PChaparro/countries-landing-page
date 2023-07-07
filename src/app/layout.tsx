@@ -22,10 +22,8 @@ export default function RootLayout({
         className={`${nunito.className} bg-neutral-100/50 dark:bg-dark-dark`}
       >
         <ClientLayout>
-          <>
-            <Header />
-            {children}
-          </>
+          <Header />
+          {children}
         </ClientLayout>
       </body>
     </html>
