@@ -1,11 +1,21 @@
 "use client";
 import { BackButton } from "@/components/BackButton";
 import { Container } from "@/components/layout/Container";
+import { useIsMounted } from "@/hooks/useIsMounted";
 import { useTheme } from "next-themes";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 export default function Loading() {
   const { theme } = useTheme();
+
+  const { mounted } = useIsMounted();
+  if (!mounted) {
+    return (
+      <Container>
+        <p className="my-8 text-lg text-center">Loading...</p>
+      </Container>
+    );
+  }
 
   return (
     <SkeletonTheme

@@ -7,6 +7,7 @@ import { useDebounce } from "usehooks-ts";
 import { Country } from "@/types/entities";
 import { useTheme } from "next-themes";
 import { Container } from "./layout/Container";
+import { useIsMounted } from "@/hooks/useIsMounted";
 
 interface CountriesListProps {
   countries: Country[];
@@ -41,6 +42,9 @@ export const CountriesList = ({ countries }: CountriesListProps) => {
 
     setFilteredCountries(filteredCountries);
   }, [debouncedSearchField, region, countries]);
+
+  const { mounted } = useIsMounted();
+  if (!mounted) return null;
 
   return (
     <Container>

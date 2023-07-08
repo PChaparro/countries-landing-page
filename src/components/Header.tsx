@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { useIsMounted } from "@/hooks/useIsMounted";
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -15,6 +16,9 @@ export const Header = () => {
   // Get the icon according to the theme
   const ThemeIcon = theme === "light" ? Moon : Sun;
   const ThemeIconColor = theme === "light" ? "black" : "white";
+
+  const { mounted } = useIsMounted();
+  if (!mounted) return null;
 
   return (
     <header className="py-6 bg-white shadow-md dark:bg-dark-soft shadow-neutral-200/25 dark:shadow-slate-800/20">
