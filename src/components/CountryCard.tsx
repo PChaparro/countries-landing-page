@@ -12,7 +12,7 @@ export const CountryCard = ({ country }: CountryCardProps) => {
     <Link href={`/country/${country.cca3}`}>
       <article
         key={country.cca3}
-        className="h-full pb-4 bg-white rounded-lg shadow-md shadow-neutral-200/50 dark:bg-dark-soft dark:shadow-slate-800/20"
+        className="h-full pb-4 overflow-hidden bg-white rounded-lg shadow-md shadow-neutral-200/50 dark:bg-dark-soft dark:shadow-slate-800/20"
       >
         <Image
           className="object-cover object-center w-full aspect-video"
