@@ -80,10 +80,9 @@ export default function Home() {
           <select
             className="p-4 bg-white rounded-md shadow-sm dark:bg-dark-soft"
             onChange={handleSelectChange}
+            defaultValue={""}
           >
-            <option value="" selected>
-              Filter by region
-            </option>
+            <option value="">Filter by region</option>
             <option value="Africa">Africa</option>
             <option value="Americas">Americas</option>
             <option value="Asia">Asia</option>
