@@ -3,6 +3,7 @@ import React from "react";
 import { Container } from "@/components/layout/Container";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -19,7 +20,9 @@ export const Header = () => {
     <header className="py-6 bg-white shadow-md dark:bg-dark-soft shadow-neutral-200/25 dark:shadow-slate-800/20">
       <Container>
         <div className="flex flex-wrap items-center justify-center w-full gap-4 text-center xs:justify-between">
-          <h1 className="text-2xl font-extrabold">Where in the world?</h1>
+          <Link href="/" className="text-2xl font-extrabold">
+            Where in the world?
+          </Link>
           <button className="flex gap-2 font-bold" onClick={handleThemeChange}>
             <ThemeIcon size={24} color={ThemeIconColor} />
             {theme === "light" ? "Dark" : "Light"} theme
