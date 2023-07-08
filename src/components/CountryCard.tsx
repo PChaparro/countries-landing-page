@@ -1,5 +1,6 @@
 import { Country } from "@/types/entities";
 import Image from "next/image";
+import { Detail } from "./Detail";
 
 interface CountryCardProps {
   country: Country;
@@ -20,16 +21,12 @@ export const CountryCard = ({ country }: CountryCardProps) => {
       />
       <div className="p-4">
         <h2 className="mb-2 text-lg font-extrabold">{country.name.common}</h2>
-        <p>
-          <span className="font-bold">Population:</span>{" "}
-          {country.population.toLocaleString()}
-        </p>
-        <p>
-          <span className="font-bold">Region:</span> {country.region}
-        </p>
-        <p>
-          <span className="font-bold">Capital:</span> {country.capital}
-        </p>
+        <Detail
+          title="Population"
+          value={country.population.toLocaleString()}
+        />
+        <Detail title="Region" value={country.region} />
+        <Detail title="Capital" value={country.capital} />
       </div>
     </article>
   );
