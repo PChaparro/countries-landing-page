@@ -11,7 +11,7 @@ export default async function Page({ params }: { params: { cca3: string } }) {
   const country = await getCountryByAlpha3Code(cca3);
 
   // Get the names of the border countries
-  const borders = Object.values(country.borders);
+  const borders = Object.values(country.borders || {});
   const borderCountries = await Promise.all(
     borders.map((border) => getCountryByAlpha3Code(border))
   );
@@ -59,18 +59,20 @@ export default async function Page({ params }: { params: { cca3: string } }) {
                 <Detail title="Languages" value={languages.join(", ")} />
               </div>
             </div>
-            <div className="flex flex-wrap items-center gap-4">
-              <p className="font-bold">Border Countries:</p>
-              {borderCountries.map((country) => (
-                <Link
-                  href={`/country/${country.cca3}`}
-                  key={country.cca3}
-                  className="px-4 py-2 bg-white rounded-sm shadow-md dark:shadow-slate-800/20 dark:bg-dark-soft"
-                >
-                  {country.name.common}
-                </Link>
-              ))}
-            </div>
+            {borderCountries.length > 0 && (
+              <div className="flex flex-wrap items-center gap-4">
+                <p className="font-bold">Border Countries:</p>
+                {borderCountries.map((country) => (
+                  <Link
+                    href={`/country/${country.cca3}`}
+                    key={country.cca3}
+                    className="px-4 py-2 bg-white rounded-sm shadow-md dark:shadow-slate-800/20 dark:bg-dark-soft"
+                  >
+                    {country.name.common}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </Container>
