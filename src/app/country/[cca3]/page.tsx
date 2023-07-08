@@ -17,11 +17,12 @@ export default async function Page({ params }: { params: { cca3: string } }) {
   );
 
   // Parse data in object / array formats
-  const currencies = Object.values(country.currencies).map(
+  const currencies = Object.values(country.currencies || {}).map(
     (entry) => `${entry.name} (${entry.symbol})`
   );
 
-  const languages = Object.values(country.languages);
+  const languages = Object.values(country.languages || {});
+  const nativeNames = Object.values(country.name.nativeName || {});
 
   return (
     <main>
@@ -41,22 +42,31 @@ export default async function Page({ params }: { params: { cca3: string } }) {
             <h1 className="text-4xl font-extrabold">{country.name.common}</h1>
             <div className="grid gap-8 lg:grid-cols-2">
               <div>
-                <Detail title="Native name" value="Text" />
+                <Detail
+                  title="Native name"
+                  value={nativeNames[0]?.official || "NA"}
+                />
                 <Detail
                   title="Population"
-                  value={country.population.toLocaleString()}
+                  value={country.population.toLocaleString() || "NA"}
                 />
                 <Detail title="Region" value={country.region} />
-                <Detail title="Sub Region" value={country.subregion} />
-                <Detail title="Capital" value={country.capital} />
+                <Detail title="Sub Region" value={country.subregion || "NA"} />
+                <Detail title="Capital" value={country.capital || "NA"} />
               </div>
               <div>
                 <Detail
                   title="Top Level Domain"
                   value={country.tld.join(", ")}
                 />
-                <Detail title="Currencies" value={currencies.join(", ")} />
-                <Detail title="Languages" value={languages.join(", ")} />
+                <Detail
+                  title="Currencies"
+                  value={currencies.join(", ") || "NA"}
+                />
+                <Detail
+                  title="Languages"
+                  value={languages.join(", ") || "NA"}
+                />
               </div>
             </div>
             {borderCountries.length > 0 && (
