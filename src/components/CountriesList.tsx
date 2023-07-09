@@ -3,7 +3,6 @@
 import { Search } from "lucide-react";
 import { CountryCard } from "./CountryCard";
 import { useEffect, useState } from "react";
-import { useDebounce } from "usehooks-ts";
 import { Country } from "@/types/entities";
 import { useTheme } from "next-themes";
 import { Container } from "./layout/Container";
@@ -17,9 +16,7 @@ export const CountriesList = ({ countries }: CountriesListProps) => {
   const { theme } = useTheme();
 
   const [search, setSearch] = useState<string>("");
-  const debouncedSearchField = useDebounce(search, 200);
   const [region, setRegion] = useState<string>("");
-  const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -31,17 +28,19 @@ export const CountriesList = ({ countries }: CountriesListProps) => {
     setRegion(value);
   };
 
-  useEffect(() => {
-    const filteredCountries = countries.filter((country) => {
+  const filterCountries = () => {
+    const filterResults = countries.filter((country) => {
       const countryName = country.name.common.toLowerCase();
       return (
-        countryName.includes(debouncedSearchField.toLowerCase()) &&
+        countryName.includes(search.toLowerCase()) &&
         country.region.includes(region)
       );
     });
 
-    setFilteredCountries(filteredCountries);
-  }, [debouncedSearchField, region, countries]);
+    return filterResults;
+  };
+
+  let filteredCountries: Country[] = filterCountries();
 
   const { mounted } = useIsMounted();
   if (!mounted) return null;
